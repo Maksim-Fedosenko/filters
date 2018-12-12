@@ -1,0 +1,202 @@
+<html>
+
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <meta name="viewport" content="width=800 ,  user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Фильтры</title>
+    <p id="begin" title="Рад вас видеть!" align="center">Приветствую! Вставьте ссылку на изображение из интернет ресурса,чтобы применить к ней фильтр (или примените фильтр к картинке по умолчанию).</p>
+</head>
+
+<body style="width:99%">
+
+
+
+    <p title="На ваше изображение"><b>Ссылка   :</b>
+        <input autofocus type="url" id="sss" value="" style="width:45%" title="Введите ссылку(Картинка на сайте->Правая кнопка мыши->Копировать URL картинки)" />
+        <button onclick="img()" title="Сменить изображение"><b>Заменить</b></button>
+        <button onclick="cl()" title="Очистить ввод"><b>Очистить</b></button>
+        <button onclick="def()" title="Использовать стандартную картинку (дерево)"><b>По-умолчанию</b></button>
+        <br/>
+
+    </p>
+
+    <div>
+        <img title="Изображение" height="59%" width="40%" id="image" src="http://lfly.ru/wp-content/uploads/2017/03/derevo.jpg" alt="Изображение не найдено.Неправильно введена/отсутствует ссылка на изображение "></img>
+        <img title="Изображение с фильтром" style="filter:none" align="right" height="59%" width="40%" id="image2" src="http://lfly.ru/wp-content/uploads/2017/03/derevo.jpg" alt="Введите ссылку на картинку,чтобы применить к ней фильтр "></img>
+    </div>
+    </br>
+
+    <b id="bb" title="filters">Фильтры:</b>
+
+    <div style="margin-left:6%">
+        <button onclick="gs()">Чёрно-Белый</button>
+        <button onclick="sp()">Сепия</button>
+        <button onclick="ng()">Инверсия</button>
+        <button onclick="inv()">Негатив</button>
+        <button onclick="bl()">Размытие</button>
+        <button onclick="proz()">Прозрачнее</button>
+        <button onclick="none()"><b>Оригинал</b></button>
+        </br>
+        </br>
+        <div>
+
+            <button onclick="con1()">Мини Контраст</button>
+            <button onclick="con0()"><b>Оригинал</b></button>
+            <button onclick="con2()">Супер Контраст</button>
+        </div>
+        </br>
+
+        <div>
+            <button onclick="br1()">Темнее</button>
+            <button onclick="br0()"><b>Оригинал</b></button>
+            <button onclick="br2()">Ярче</button>
+        </div>
+        </br>
+
+    </div>
+    </br>
+    </br>
+    </br>
+    <footer style="margin-bottom:0%;width:99%" align=center>
+        <p id="txt" title="Программа находится в разработке:)">© Данная программа создана для одиночного использование фильтров.Совместное использование временно недоступно.
+            </br>
+            Прошу прощения за временные неудобства.
+        </p>
+    </footer>
+    <style>
+        #image {
+            box-shadow: 9px 11px 9px gray;
+            margin-left: 6%;
+        }
+        
+        #image2 {
+            box-shadow: 9px 11px 9px gray;
+            margin-right: 5%;
+            filter: none;
+        }
+        
+        body {
+            background: -webkit-linear-gradient(#6fdefa 10%, #edf3f5);
+            background: -moz-linear-gradient(#6fdefa 10%, #edf3f5);
+            background: -o-linear-gradient(#6fdefa 10%, #edf3f5);
+            background: -ms-linear-gradient-linear-gradient(#6fdefa 10%, #edf3f5);
+        }
+        
+        #txt {
+            color: gray;
+        }
+        
+        #begin {
+            font-family: Arial;
+            font-size: 16px;
+            font-weight: bolder;
+            margin-top: 1%;
+            color: rgb(21, 21, 80);
+        }
+        
+        img:hover {
+            cursor: move;
+        }
+        
+        button:hover {
+            cursor: pointer;
+        }
+        
+        p:hover {
+            cursor: help;
+        }
+        
+        #bb:hover {
+            cursor: crosshair;
+        }
+    </style>
+</body>
+<script>
+    function img() {
+        var l = document.getElementById("sss").value;
+        if (l == "") {
+            alert("Введите ссылку на картинку,чтобы применить к ней фильтр")
+        } else {
+
+            /*var a = document.getElementByID("image").src;*/
+            /*a.innerHTML=l;*/
+            /*var a2 = document.getElementByID("image2").src;*/
+            /*aa.innerHTML=l;*/
+            /* alert(a + aa);*/
+            $("img").attr("src", l);
+        }
+    }
+
+
+    function img2() {
+        var l = document.getElementById("sss2").value;
+        $("img").attr("src", l);
+    }
+
+    function gs() {
+        $("#image2").css("filter", "grayscale(100)");
+    }
+
+    function none() {
+        $("#image2").css("filter", "none");
+    }
+
+    function sp() {
+        $("#image2").css("filter", "sepia(100)");
+    }
+
+    function ng() {
+        $("#image2").css("filter", "hue-rotate(180deg)");
+    }
+
+    function inv() {
+        $("#image2").css("filter", "invert(100%)");
+    }
+
+    function bl() {
+        $("#image2").css("filter", "blur(6px)");
+    }
+
+    function proz() {
+        $("#image2").css("filter", "opacity(0.5)");
+    }
+
+    function br1() {
+        $("#image2").css("filter", "brightness(0.5)");
+    }
+
+    function br0() {
+        $("#image2").css("filter", "brightness(1)");
+    }
+
+    function br2() {
+        $("#image2").css("filter", "brightness(1.8)");
+    }
+
+    function con1() {
+        $("#image2").css("filter", "contrast(0.5)");
+    }
+
+    function con0() {
+        $("#image2").css("filter", "contrast(1)");
+    }
+
+    function con2() {
+        $("#image2").css("filter", "contrast(1.8)");
+    }
+
+    function cl() {
+        /* var l = document.getElementById("sss").value;
+         l.innerHTML = null;*/
+        $('#sss').val('');
+
+    }
+
+    function def() {
+        $("img").attr("src", "http://lfly.ru/wp-content/uploads/2017/03/derevo.jpg");
+    }
+</script>
+
+</html>

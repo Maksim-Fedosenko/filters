@@ -1,0 +1,251 @@
+<html>
+
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <meta name="viewport" content="width=800 ,  user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Фильтры</title>
+    <p id="begin" title="Рад вас видеть!" align="center">Приветствую! Вставьте ссылку на изображение из интернет ресурса,чтобы применить к ней фильтр (или примените фильтр к картинке по умолчанию).</p>
+</head>
+
+<body style="width:99%">
+
+
+
+    <p title="На ваше изображение"><b>Ссылка   :</b>
+        <input autofocus type="url" id="sss" value="" style="width:45%" title="Введите ссылку(Картинка на сайте->Правая кнопка мыши->Копировать URL картинки)" />
+        <button onclick="img()" title="Сменить изображение"><b>Заменить</b></button>
+        <button onclick="cl()" title="Очистить ввод"><b>Очистить</b></button>
+        <button onclick="def()" title="Использовать стандартную картинку (дерево)"><b>По-умолчанию</b></button>
+        <br/>
+        <br/>
+
+        <input autofocus type="file" id="ssss" value="" style="margin-left:51%" title="Введите ссылку(Картинка на сайте->Правая кнопка мыши->Копировать URL картинки)" />
+        <button onclick="img_file()" title="Сменить изображение" style="margin-left:5%"><b>Использовать</b></button>
+
+    </p>
+
+    <div>
+        <img title="Изображение" height="59%" width="40%" id="image" src="http://lfly.ru/wp-content/uploads/2017/03/derevo.jpg" alt="Изображение не найдено.Неправильно введена/отсутствует ссылка на изображение "></img>
+        <img title="Изображение с фильтром" align="right" height="59%" width="40%" id="image2" src="http://lfly.ru/wp-content/uploads/2017/03/derevo.jpg" alt="Введите ссылку на картинку,чтобы применить к ней фильтр "></img>
+    </div>
+    </br>
+
+    <b id="bb" title="filters">Фильтры:</b>
+
+    <div style="margin-left:6%">
+        <button onclick="gs()">Чёрно-Белый</button>
+        <button onclick="sp()">Сепия</button>
+        <button onclick="ng()">Инверсия</button>
+        <button onclick="inv()">Негатив</button>
+        <button onclick="bl()">Размытие</button>
+        <button onclick="proz()">Прозрачнее</button>
+        <button onclick="none()"><b>Оригинал</b></button>
+        </br>
+        </br>
+        <div>
+
+            <b>Контраст:</b>
+            <input id="cont" type=range min=0 max=500 value="100" style="margin-left: 1%">
+        </div>
+        </br>
+
+        <div>
+            <b> Яркость    :</b>
+            <input id="yar" type=range min=0 max=500 value="100" style="margin-left: 1%">
+        </div>
+        </br>
+
+    </div>
+
+    <footer style="margin-bottom:0%;width:99%" align=left>
+        <p id="txt" title="Программа находится в разработке:)">© Данная программа аналог filters,имеет версию 2.0.
+            </br>
+            Здесь добавлены ползунки настройки яркости и контраста (временно недоступны,в связи с работами),возможность отмены фильтров,альтернативный дизайн и загрузка картинки из директории данной веб-страницы.
+            </br>
+            Ведётся работа над совместным использованием нескольких фильтров и полноценной загрузки своей картинки.Является beta-версией веб-страницы.
+
+        </p>
+    </footer>
+    <style>
+        #image {
+            box-shadow: 9px 11px 9px rgb(56, 56, 56);
+            margin-left: 6%;
+            filter: brightness(n);
+        }
+        
+        #image2 {
+            box-shadow: 9px 11px 9px rgb(56, 56, 56);
+            margin-right: 5%;
+            filter: none;
+        }
+        
+        body {
+            background: -webkit-linear-gradient(#b61515 30%, #edf3f5);
+            background: -moz-linear-gradient(#b61515 30%, #edf3f5);
+            height: 98%;
+        }
+        
+        #txt {
+            color: rgb(66, 66, 66);
+        }
+        
+        #begin {
+            font-family: Arial;
+            font-size: 16px;
+            font-weight: bolder;
+            margin-top: 1%;
+            color: rgb(21, 21, 80);
+        }
+        /*.grayscale {
+            filter: grayscale(100);
+        }*/
+        
+        img:hover {
+            cursor: move;
+        }
+        
+        button:hover {
+            cursor: pointer;
+        }
+        
+        p:hover {
+            cursor: help;
+        }
+        
+        #bb:hover {
+            cursor: crosshair;
+        }
+        /*head{
+                filter: grayscale(100);
+            }*/
+        
+        .cl1 {
+            filter: grayscale(100);
+        }
+        
+        .cl2 {
+            filter: sepia(100);
+        }
+        
+        .cl3 {
+            filter: hue-rotate(180deg);
+        }
+        
+        .cl4 {
+            filter: invert(100%);
+        }
+        
+        .cl5 {
+            filter: blur(6px);
+        }
+        
+        .cl6 {
+            filter: opacity(0.5);
+        }
+        
+        .cl7 {
+            filter: none;
+        }
+    </style>
+</body>
+<script>
+    function img() {
+        var l = document.getElementById("sss").value;
+        if (l == "") {
+            alert("Введите ссылку на картинку,чтобы применить к ней фильтр")
+        } else {
+
+            /*var a = document.getElementByID("image").src;*/
+            /*a.innerHTML=l;*/
+            /*var a2 = document.getElementByID("image2").src;*/
+            /*aa.innerHTML=l;*/
+            /* alert(a + aa);*/
+            $("img").attr("src", l);
+        }
+    }
+    n = document.getElementById("cont").value;
+
+    function img2() {
+        var l = document.getElementById("sss2").value;
+        $("img").attr("src", l);
+    }
+
+    function gs() {
+        $("img").toggleClass("cl1");
+    }
+
+    function none() {
+        $("img").toggleClass("cl7");
+    }
+
+    function sp() {
+        $("img").toggleClass("cl2");
+    }
+
+    function ng() {
+        $("img").toggleClass("cl3");
+    }
+
+    function inv() {
+        $("img").toggleClass("cl4");
+    }
+
+    function bl() {
+        $("img").toggleClass("cl5");
+    }
+
+    function proz() {
+        $("img").toggleClass("cl6");
+    }
+
+    function br1() {
+        $("#image2").css("filter", "brightness(0.5)");
+    }
+
+    function br0() {
+        $("#image2").css("filter", "brightness(1)");
+    }
+
+    function br2() {
+        $("#image2").css("filter", "brightness(1.8)");
+    }
+
+    function con1() {
+        $("#image2").css("filter", "contrast(0.5)");
+    }
+
+    function con0() {
+        $("#image2").css("filter", "contrast(1)");
+    }
+
+    function con2() {
+        $("#image2").css("filter", "contrast(1.8)");
+    }
+
+    function cl() {
+        /* var l = document.getElementById("sss").value;
+         l.innerHTML = null;*/
+        $('#sss').val('');
+
+    }
+
+    function def() {
+        $("img").attr("src", "http://lfly.ru/wp-content/uploads/2017/03/derevo.jpg");
+    }
+
+    function img_file() {
+        /*var l2 = document.getElementById("ssss").value;*/
+        var f = document.getElementById("ssss").files[0].name;
+
+        $("img").attr("src", document.getElementById("ssss").files[0].name);
+
+
+    }
+</script>
+
+</html>
+
+<!--rgba(13,152,186,5)
+/*function gs() { var b="filter:grayscale(100)"; var a=document.getElementByID("image2"); image2.style=b; $('image2').css("filter","grayscale(100)"); }*/--
